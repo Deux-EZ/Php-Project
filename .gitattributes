@@ -1,0 +1,17 @@
+# Lenguajes principales
+*.php linguist-language=PHP
+*.css linguist-language=CSS
+*.js linguist-language=JavaScript
+*.html linguist-language=HTML
+
+# Marcar documentación
+*.md linguist-documentation
+LICENSE linguist-documentation
+
+# Detectar archivos de vista como PHP
+*.phtml linguist-language=PHP
+views/**/*.php linguist-language=PHP
+
+# Archivos de vendor
+vendor/* linguist-vendored
+node_modules/* linguist-vendored
