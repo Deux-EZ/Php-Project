@@ -35,5 +35,5 @@
 .history
 .ionide
 
-.env/*
+.env*
 # End of https://www.toptal.com/developers/gitignore/api/phpunit,visualstudiocode
