@@ -14,6 +14,7 @@ require_once __DIR__ . '/../app/controllers/AuthController.php';
 require_once __DIR__ . '/../app/controllers/UserController.php';
 require_once __DIR__ . '/../app/models/User.php';
 require_once __DIR__ . '/../app/controllers/HomeController.php';
+require_once __DIR__ . '/../app/config/database2.php'; 
 
 // Obtener la ruta solicitada
 $route = $_GET['route'] ?? 'home';
