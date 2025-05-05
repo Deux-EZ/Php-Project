@@ -38,35 +38,36 @@ class AuthController extends BaseController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['txtusuario'] ?? '';
             $password = $_POST['txtpassword'] ?? '';
-
+    
             if (empty($username) || empty($password)) {
                 return $this->render('auth/register', [
                     'error' => 'Por favor complete todos los campos'
                 ]);
             }
-
+    
             if (strlen($password) < 8) {
                 return $this->render('auth/register', [
                     'error' => 'La contraseña debe tener al menos 8 caracteres'
                 ]);
             }
-
+    
             if ($this->userModel->userExists($username)) {
                 return $this->render('auth/register', [
                     'error' => 'El usuario ya existe'
                 ]);
             }
-
-            if ($this->userModel->create($username, $password)) {
+    
+            // Usar la transacción distribuida
+            if ($this->userModel->createWithDistributedLog($username, $password)) {
                 header('Location: ' . Config::get('APP_URL') . '/public/index.php?route=auth/login');
                 exit();
             }
-
+    
             return $this->render('auth/register', [
-                'error' => 'Error al crear el usuario'
+                'error' => 'Error al crear el usuario o guardar el log'
             ]);
         }
-
+    
         return $this->render('auth/register');
     }
 
